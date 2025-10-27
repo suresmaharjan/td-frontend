@@ -40,3 +40,20 @@ a {
     color-scheme: dark;
   }
 }
+
+nav.navbar {
+  padding: 0.5rem 1rem;
+}
+
+/* .btn-outline-light:hover {
+  background-color: rgba(255,255,255,0.2);
+} */
+
+.no-hover:hover,
+.no-hover:focus,
+.no-hover:active {
+  background-color: transparent !important;
+  color: inherit !important;
+  border-color: inherit !important;
+  box-shadow: none !important;
+}
