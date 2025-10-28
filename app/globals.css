@@ -1,6 +1,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --bs-primary: #0fbe7c;
+  --bs-primary-rgb: 15, 190, 124;
+  --bs-primary-bg-subtle: #e6f9f1;
+  --bs-primary-border-subtle: #a2e3c7;
+  --bs-primary-text-emphasis: #0b7c55;
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -56,4 +62,28 @@ nav.navbar {
   color: inherit !important;
   border-color: inherit !important;
   box-shadow: none !important;
+}
+
+/* BUTTONS */
+.btn {
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: var(--bs-primary) !important;
+  border-color: var(--bs-primary) !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: rgba(var(--bs-primary-rgb), 0.85) !important;
+  border-color: rgba(var(--bs-primary-rgb), 0.85) !important;
+}
+
+
+/* Responsive  */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px !important;
+  }
 }

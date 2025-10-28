@@ -2,25 +2,35 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
 
   return (
     <header className="sticky-top bg-white" style={{ zIndex: 50 }}>
-      <div className="container-fluid d-flex justify-content-between align-items-center py-3 px-3 px-md-5">
+      <div className="container d-flex justify-content-between align-items-center py-3 ">
         {/* Logo */}
-        <Link href="/" className="d-flex align-items-center text-decoration-none">
-          <span className="fs-5 fw-medium">Tamang Dictionary</span>
+        <Link
+          href="/"
+          className="d-flex align-items-center text-decoration-none"
+        >
+          <Image src="/images/logo.png" width={271} height={51} alt="logo" />
         </Link>
 
         {/* Desktop Nav */}
         <nav className="d-none d-md-flex gap-4">
-          <Link href="/about" className="text-uppercase text-decoration-none">
-            About
+          <Link href="/" className="fw-bold">
+            Home
           </Link>
-          <Link href="/contact" className="text-uppercase text-decoration-none">
-            Contact
+          <Link href="/browse" className="fw-bold">
+            Browse
+          </Link>
+          <Link href="/names" className="fw-bold">
+            Names
+          </Link>
+          <Link href="/quiz" className="fw-bold">
+            Quiz
           </Link>
         </nav>
 
@@ -55,7 +65,9 @@ const Header = () => {
                 width: "20px",
                 height: "3px",
                 transition: "all 0.3s",
-                transform: open ? "rotate(-45deg) translate(4px, -5px)" : "none",
+                transform: open
+                  ? "rotate(-45deg) translate(4px, -5px)"
+                  : "none",
               }}
             />
           </div>
@@ -66,21 +78,39 @@ const Header = () => {
           <>
             <nav
               className="d-md-none position-fixed top-0 end-0 vh-100 w-75 bg-light d-flex flex-column justify-content-center align-items-center gap-4"
-              style={{ backgroundColor: "#e6e6ff", zIndex: 20, transition: "transform 0.3s" }}
+              style={{
+                backgroundColor: "#e6e6ff",
+                zIndex: 20,
+                transition: "transform 0.3s",
+              }}
             >
               <Link
-                href="/about"
+                href="/"
                 onClick={() => setOpen(false)}
-                className="text-uppercase text-decoration-none"
+                className="fw-bold"
               >
-                About
+                Home
               </Link>
               <Link
-                href="/contact"
+                href="/browse"
                 onClick={() => setOpen(false)}
-                className="text-uppercase text-decoration-none"
+                className="fw-bold"
               >
-                Contact
+                Browse
+              </Link>
+              <Link
+                href="/names"
+                onClick={() => setOpen(false)}
+                className="fw-bold"
+              >
+                Names
+              </Link>
+              <Link
+                href="/quiz"
+                onClick={() => setOpen(false)}
+                className="fw-bold"
+              >
+                Quiz
               </Link>
             </nav>
 
