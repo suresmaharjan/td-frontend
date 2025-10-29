@@ -60,10 +60,9 @@ console.log(lang)
 
           {/* Input Field */}
           <input
-            className="form-control border-0 flex-grow-1 px-3"
+            className="form-control border-0 flex-grow-1 px-3 search-input"
             type="search"
             placeholder="Search here"
-            aria-label="Search"
             required
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -88,10 +87,10 @@ console.log(lang)
             type="submit"
             className="btn border-0 bg-transparent text-success d-flex align-items-center"
           >
-            <i className="bi bi-search" style={{ fontSize: "1.2rem" }}></i>
+            <i className="bi bi-search" style={{ fontSize: "24px" }}></i>
           </button>
         </form>
       </div>
-    </nav>
+     </nav>
   );
 }
