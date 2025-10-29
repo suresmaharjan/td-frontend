@@ -64,6 +64,34 @@ nav.navbar {
   box-shadow: none !important;
 }
 
+/* FORM */
+/* .form-select{
+  --bs-form-select-bg-img: 
+  url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+} */
+
+.lang-select {
+  background-color: #0fbe7c !important; /* Green background */
+  color: #fff !important;              /* White text */
+  border-radius: 6px;                  /* Rounded edges */
+  appearance: none;                    /* Remove default arrow */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath fill='white' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px;
+  cursor: pointer;
+  width: auto;
+}
+
+.lang-select option {
+  color: #000; 
+}
+/* 
+.lang-select:focus {
+  outline: none;
+  box-shadow: none;
+} */
+
 /* BUTTONS */
 .btn {
   white-space: nowrap;

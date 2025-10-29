@@ -34,7 +34,7 @@ export default function SearchBar() {
   };
 
   const languages = ["तामाङ - नेपाली", "नेपाली - तामाङ", "अंग्रेजी - नेपाली"];
-
+console.log(lang)
   return (
     <nav className="bg-primary py-4">
       <div className="container">
@@ -44,36 +44,18 @@ export default function SearchBar() {
         >
           {/* Dropdown inside input (left side) */}
           <div className="position-relative" ref={dropdownRef}>
-            <button
-              type="button"
-              className="btn btn-primary  rounded-1  d-flex align-items-center"
-              onClick={() => setOpen((s) => !s)}
-              style={{ fontWeight: "500" }}
-            >
-              {lang}
-              <i className="bi bi-caret-down-fill ms-1" style={{ fontSize: "0.7rem" }}></i>
-            </button>
-
-            <ul
-              className={`dropdown-menu${open ? " show" : ""}`}
+            <select
+              className="form-select lang-select text-white  bg-primary border-0  px-3 py-2"
               role="menu"
-              style={{ minWidth: "5rem" }}
+              style={{ minWidth: "155px" }}
+              onChange={e => setLang(e.target.value)}
             >
-              {languages.map((code) => (
-                <li key={code}>
-                  <button
-                    type="button"
-                    className={`dropdown-item${code === lang ? " active" : ""}`}
-                    onClick={() => {
-                      setLang(code);
-                      setOpen(false);
-                    }}
-                  >
-                    {code}
-                  </button>
-                </li>
+              {languages.map((lang) => (
+                <option key={lang} value={lang}>
+                    {lang}
+                </option>
               ))}
-            </ul>
+            </select>
           </div>
 
           {/* Input Field */}

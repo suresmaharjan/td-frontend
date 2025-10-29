@@ -52,26 +52,26 @@ export default function SearchBar() {
             {lang}
           </button>
 
-          <ul
+          <select
             className={`dropdown-menu${open ? " show" : ""}`}
             role="menu"
             style={{ minWidth: "6rem" }}
           >
             {languages.map((code) => (
-              <li key={code}>
-                <button
+              <option key={code}>
+                {/* <button
                   type="button"
                   className={`dropdown-item${code === lang ? " active" : ""}`}
                   onClick={() => {
                     setLang(code);
                     setOpen(false);
                   }}
-                >
+                > */}
                   {code}
-                </button>
-              </li>
+                {/* </button> */}
+              </option>
             ))}
-          </ul>
+          </select>
         </div>
 
         {/* Search Form */}
