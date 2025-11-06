@@ -1,60 +1,42 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import axios from "axios";
 
 export default function SearchBar() {
-  const [lang, setLang] = useState("तामाङ - नेपाली");
-  const [search, setSearch] = useState("");
-  const [open, setOpen] = useState(false);
-  const dropdownRef = useRef(null);
-  const router = useRouter();
+  const [lang, setLang] = useState("english");
+  const [keyword, setKeyword] = useState("");
 
-  // Close dropdown on outside click or Escape
-  useEffect(() => {
-    function onDocClick(e) {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setOpen(false);
-      }
-    }
-    function onKey(e) {
-      if (e.key === "Escape") setOpen(false);
-    }
-    document.addEventListener("click", onDocClick);
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("click", onDocClick);
-      document.removeEventListener("keydown", onKey);
-    };
-  }, []);
-
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
-    if (!search.trim()) return;
-    router.push(`/dictionary/${lang}/?q=${encodeURIComponent(search.trim())}`);
+    const res = axios.get(
+      `https://tamangdictionary.com/api/apisearch?lang=${lang}&keyword=${keyword}`
+    );
+      console.log(res)
   };
 
-  const languages = ["तामाङ - नेपाली", "नेपाली - तामाङ", "अंग्रेजी - नेपाली"];
-console.log(lang)
+  // const languages = ["तामाङ - नेपाली", "नेपाली - तामाङ", "अंग्रेजी - नेपाली"];
+
   return (
-    <nav className="bg-primary py-4">
+    <nav className="bg-primary py-3">
       <div className="container">
         <form
-          className="position-relative d-flex align-items-center mx-auto bg-white rounded shadow-sm px-2 py-2"
+          className="position-relative d-flex align-items-center mx-auto bg-white rounded shadow-sm px-2 py-1"
           onSubmit={handleSubmit}
         >
-          {/* Dropdown inside input (left side) */}
-          <div className="position-relative" ref={dropdownRef}>
+          <div className="position-relative">
             <select
               className="form-select lang-select text-white  bg-primary border-0  px-3 py-2"
-              role="menu"
-              style={{ minWidth: "155px" }}
-              onChange={e => setLang(e.target.value)}
+              style={{ minWidth: "145px" }}
+              onChange={(e) => setLang(e.target.value)}
             >
-              {languages.map((lang) => (
+              {/* {languages.map((lang) => (
                 <option key={lang} value={lang}>
                     {lang}
                 </option>
-              ))}
+              ))} */}
+              <option value="english">अंग्रेजी - नेपाली</option>
+              <option value="tamang">तामाङ - नेपाली</option>
+              <option value="nepali">नेपाली - तामाङ</option>
             </select>
           </div>
 
@@ -64,12 +46,10 @@ console.log(lang)
             type="search"
             placeholder="Search here"
             required
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
             style={{
               boxShadow: "none",
-              outline: "none",
-              backgroundColor: "transparent",
             }}
           />
 
@@ -91,6 +71,6 @@ console.log(lang)
           </button>
         </form>
       </div>
-     </nav>
+    </nav>
   );
 }

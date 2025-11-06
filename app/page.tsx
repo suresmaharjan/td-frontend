@@ -5,11 +5,6 @@ export default function Home() {
     <>
       <div>Home page</div>;<div>Home page</div>;<div>Home page</div>;
       <div>Home page</div>;<div>Home page</div>;<div>Home page</div>;
-      <div>Home page</div>;<div>Home page</div>;<div>Home page</div>;
-      <div>Home page</div>;<div>Home page</div>;<div>Home page</div>;
-      <div>Home page</div>;<div>Home page</div>;<div>Home page</div>;
-      <div>Home page</div>;<div>Home page</div>;<div>Home page</div>;
-      <div>Home page</div>;<div>Home page</div>;<div>Home page</div>;
     </>
   );
 }
