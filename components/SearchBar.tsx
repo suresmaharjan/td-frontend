@@ -6,12 +6,17 @@ export default function SearchBar() {
   const [lang, setLang] = useState("english");
   const [keyword, setKeyword] = useState("");
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const res = axios.get(
-      `https://tamangdictionary.com/api/apisearch?lang=${lang}&keyword=${keyword}`
-    );
-      console.log(res)
+    try {
+      const res = await axios.get(
+        // `https://tamangdictionary.com/api/apisearch?lang=${lang}&keyword=${keyword}`
+        `api/apisearch?lang=${lang}&keyword=${keyword}`
+      );
+      console.log(res.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
   // const languages = ["तामाङ - नेपाली", "नेपाली - तामाङ", "अंग्रेजी - नेपाली"];
