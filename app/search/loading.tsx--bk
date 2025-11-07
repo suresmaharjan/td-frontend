@@ -1,0 +1,13 @@
+export default function Loading() {
+  return (
+    <div className="d-flex flex-column align-items-center justify-content-center vh-100">
+      {/* Spinner */}
+      <div className="spinner-border text-primary" role="status" style={{ width: "3rem", height: "3rem" }}>
+        <span className="visually-hidden">Loading...</span>
+      </div>
+
+      {/* Text */}
+      <p className="mt-3 text-secondary fs-5">Loading results...</p>
+    </div>
+  );
+}

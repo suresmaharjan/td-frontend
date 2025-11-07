@@ -1,22 +1,15 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function SearchBar() {
+  const router = useRouter();
   const [lang, setLang] = useState("english");
   const [keyword, setKeyword] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      const res = await axios.get(
-        // `https://tamangdictionary.com/api/apisearch?lang=${lang}&keyword=${keyword}`
-        `api/apisearch?lang=${lang}&keyword=${keyword}`
-      );
-      console.log(res.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
+    router.push(`/search?lang=${lang}&keyword=${encodeURIComponent(keyword)}`);
   };
 
   // const languages = ["तामाङ - नेपाली", "नेपाली - तामाङ", "अंग्रेजी - नेपाली"];
@@ -26,7 +19,7 @@ export default function SearchBar() {
       <div className="container">
         <form
           className="position-relative d-flex align-items-center mx-auto bg-white rounded shadow-sm px-2 py-1"
-          onSubmit={handleSubmit}
+          onSubmit={handleSearch}
         >
           <div className="position-relative">
             <select
