@@ -4,17 +4,43 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Loader from "@/components/Loader";
-interface SearchItem {
-  id: number;
-  // add other fields like title, description if your API has them
+
+function EnglishWord({ item }: { item: any }) {
+  return (
+    <div className="card p-3 shadow-sm bg-blue-50">
+      English
+      <h5>{item.word_en}</h5>
+      {item.word_ro && <p>Romanized: {item.word_ro}</p>}
+    </div>
+  );
+}
+
+function TamangWord({ item }: { item: any }) {
+  return (
+    <div className="card p-3 shadow-sm bg-yellow-50">
+      Tamang
+      <h5>{item.word_ta}</h5>
+      {item.word_ipa && <p>IPA: {item.word_ipa}</p>}
+    </div>
+  );
+}
+
+function NepaliWord({ item }: { item: any }) {
+  return (
+    <div className="card p-3 shadow-sm">
+      Nepali
+      <h5>{item.word_np}</h5>
+      {item.grammar && <p>Grammar: {item.grammar}</p>}
+    </div>
+  );
 }
 
 export default function Search() {
   const searchParams = useSearchParams();
-  const keyword = searchParams.get("keyword") || "";
-  const lang = searchParams.get("lang") || "";
+  const keyword = searchParams.get("keyword");
+  const lang = searchParams.get("lang");
 
-  const [data, setData] = useState<SearchItem[]>([]);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [noMatch, setNoMatch] = useState<boolean>(false);
 
@@ -24,10 +50,10 @@ export default function Search() {
     setNoMatch(false);
 
     try {
-      const res = await axios.get(`/api/apisearch`, {
-        params: { lang, keyword },
-      });
-      const result = res.data.data || [];
+      const res = await axios.get(
+        `/api/apisearch?lang=${lang}&keyword=${keyword}`
+      );
+      const result = res.data.data;
       setData(result);
       setNoMatch(result.length === 0);
     } catch (err) {
@@ -38,7 +64,7 @@ export default function Search() {
       setLoading(false);
     }
   };
-
+  console.log(data);
   useEffect(() => {
     fetchData();
   }, [lang, keyword]);
@@ -47,6 +73,15 @@ export default function Search() {
   if (loading) {
     return <Loader />;
   }
+
+  // Mapping lang to data field
+  const langMap = {
+    nepali: "word_np",
+    tamang: "word_ta",
+    english: "word_en",
+  };
+
+  const selectedField = langMap[lang] || "word_en";
 
   return (
     <div className="w-100">
@@ -61,11 +96,11 @@ export default function Search() {
       ) : (
         <div className="row">
           {data.map((item) => (
-            <div key={item.id} className="col-12 col-md-6 col-lg-4 mb-3">
-              <div className="card shadow-sm p-3 h-100">
-                <p className="mb-0 fw-bold">ID: {item.id}</p>
-                {/* You can display more data here, e.g. title, meaning, etc. */}
-              </div>
+            <div key={item.id} className="col-12 mb-3">
+              {/* Render different components depending on lang */}
+              {lang === "nepali" && <NepaliWord item={item} />}
+              {lang === "tamang" && <TamangWord item={item} />}
+              {lang === "english" && <EnglishWord item={item} />}
             </div>
           ))}
         </div>
