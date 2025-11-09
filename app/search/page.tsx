@@ -3,7 +3,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-
+import Loader from "@/components/Loader";
 interface SearchItem {
   id: number;
   // add other fields like title, description if your API has them
@@ -45,26 +45,15 @@ export default function Search() {
 
   // Loading spinner
   if (loading) {
-    return (
-      <div className="d-flex flex-column align-items-center justify-content-center vh-100">
-        <div
-          className="spinner-border text-primary"
-          role="status"
-          style={{ width: "3rem", height: "3rem" }}
-        >
-          <span className="visually-hidden">Loading...</span>
-        </div>
-        <p className="mt-3 text-secondary fs-5">Searching...</p>
-      </div>
-    );
+    return <Loader />;
   }
 
   return (
-    <div className="container py-4">
-      <h3 className="mb-4 text-center">
-        Search Results for "<span className="text-primary">{keyword}</span>"
-      </h3>
-
+    <div className="w-100">
+      <h4 className=" text-primary">
+        परिणाम : <span className="">{keyword}</span>
+      </h4>
+      <hr className="border-3 text-primary mb-4 opacity-100" />
       {noMatch ? (
         <div className="text-center mt-5">
           <p className="fs-5 text-muted">No matching results found.</p>
