@@ -6,6 +6,10 @@
   --bs-primary-bg-subtle: #e6f9f1;
   --bs-primary-border-subtle: #a2e3c7;
   --bs-primary-text-emphasis: #0b7c55;
+  --bs-warning: #cd5601;
+  --bs-warning-rgb: 205, 86, 1;
+  --bs-info: #02a993;
+  --bs-info-rgb: 2, 169, 147;
 
 }
 
@@ -59,20 +63,25 @@ nav.navbar {
 } */
 
 .lang-select {
-  background-color: #0fbe7c !important; /* Green background */
-  color: #fff !important;              /* White text */
-  border-radius: 6px;                  /* Rounded edges */
-  appearance: none;                    /* Remove default arrow */
+  background-color: #0fbe7c !important;
+  /* Green background */
+  color: #fff !important;
+  /* White text */
+  border-radius: 6px;
+  /* Rounded edges */
+  appearance: none;
+  /* Remove default arrow */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath fill='white' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 10px;
   cursor: pointer;
-  width: auto;
+  /* width: auto; */
+  font-size:18px ;
 }
 
 .lang-select option {
-  color: #000; 
+  color: #000;
 }
 
 .search-input {
@@ -80,7 +89,7 @@ nav.navbar {
 }
 
 .search-input::placeholder {
-  color:#b0b0b0;
+  color: #b0b0b0;
 }
 
 /* 
