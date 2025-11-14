@@ -1,13 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: 'https://tamangdictionary.com/api/:path*', // proxy to external API
-      },
-    ];
-  },
+  output: 'export',
+  images: {
+    unoptimized: true, // 👈 this disables image optimization for static export
+  }, 
 };
 
 module.exports = nextConfig;
