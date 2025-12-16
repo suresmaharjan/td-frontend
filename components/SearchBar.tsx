@@ -1,15 +1,24 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-
+import axios from "axios";
 export default function SearchBar() {
   const router = useRouter();
   const [lang, setLang] = useState("english");
-  const [keyword, setKeyword] = useState("");
+  const [query, setQuery] = useState("");
 
   const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push(`/search?lang=${lang}&keyword=${encodeURIComponent(keyword)}`);
+    // router.push(`/search?lang=${lang}&query=${encodeURIComponent(query)}`);
+    axios
+      // .get("http://127.0.0.1:8000/api/registers")
+      .get(`http://127.0.0.1:8000/api/search?lang=${lang}&query=${query}`)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
   };
 
   // const languages = ["तामाङ - नेपाली", "नेपाली - तामाङ", "अंग्रेजी - नेपाली"];
@@ -44,8 +53,8 @@ export default function SearchBar() {
             type="search"
             placeholder="Search here"
             required
-            value={keyword}
-            onChange={(e) => setKeyword(e.target.value)}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
             style={{
               boxShadow: "none",
             }}
