@@ -71,20 +71,21 @@ function NepaliWord({ item }: { item: any }) {
 
 export default function Search() {
   const searchParams = useSearchParams();
-  const keyword = searchParams.get("keyword");
+  const searchQuery = searchParams.get("searchQuery");
   const lang = searchParams.get("lang");
 
   const { data, isPending, error } = useQuery({
-    queryKey: ["search", lang, keyword],
+    queryKey: ["search", lang, searchQuery],
     queryFn: async () => {
       const res = await axios.get(
-        `https://tamangdictionary.com/api/apisearch?lang=${lang}&keyword=${keyword}`
+        // `https://tamangdictionary.com/api/apisearch?lang=${lang}&keyword=${keyword}`
+        `http://127.0.0.1:8000/api/search?lang=${lang}&searchQuery=${searchQuery}`
       );
       console.log("Full API response:", res.data.data);
       // adjust based on what you see
       return Array.isArray(res.data) ? res.data : res.data.data;
     },
-    enabled: !!lang && !!keyword,
+    enabled: !!lang && !!searchQuery,
   });
 
   if (isPending) return <Loader />;
@@ -123,7 +124,7 @@ export default function Search() {
       </div>
       <div>
         <span className="h3 text-primary">परिणाम : </span>&nbsp;
-        <span className="h4 text-muted">{keyword}</span>
+        <span className="h4 text-muted">{searchQuery}</span>
       </div>
       <hr className="border-3 text-primary mb-3 opacity-100" />
       <div className="row">

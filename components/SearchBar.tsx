@@ -5,23 +5,24 @@ import axios from "axios";
 export default function SearchBar() {
   const router = useRouter();
   const [lang, setLang] = useState("english");
-  const [query, setQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // router.push(`/search?lang=${lang}&query=${encodeURIComponent(query)}`);
-    axios
-      // .get("http://127.0.0.1:8000/api/registers")
-      .get(`http://127.0.0.1:8000/api/search?lang=${lang}&query=${query}`)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
+    router.push(
+      `/search?lang=${lang}&searchQuery=${encodeURIComponent(searchQuery)}`
+    );
+    // axios
+    //   .get(
+    //     `http://127.0.0.1:8000/api/search?lang=${lang}&searchQuery=${searchQuery}`
+    //   )
+    //   .then((response) => {
+    //     console.log(response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error fetching data:", error);
+    //   });
   };
-
-  // const languages = ["तामाङ - नेपाली", "नेपाली - तामाङ", "अंग्रेजी - नेपाली"];
 
   return (
     <nav className="bg-primary py-3">
@@ -36,11 +37,6 @@ export default function SearchBar() {
               style={{ minWidth: "145px" }}
               onChange={(e) => setLang(e.target.value)}
             >
-              {/* {languages.map((lang) => (
-                <option key={lang} value={lang}>
-                    {lang}
-                </option>
-              ))} */}
               <option value="english">अंग्रेजी - नेपाली</option>
               <option value="tamang">तामाङ - नेपाली</option>
               <option value="nepali">नेपाली - तामाङ</option>
@@ -53,8 +49,8 @@ export default function SearchBar() {
             type="search"
             placeholder="Search here"
             required
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             style={{
               boxShadow: "none",
             }}
