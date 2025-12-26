@@ -12,16 +12,6 @@ export default function SearchBar() {
     router.push(
       `/search?lang=${lang}&searchQuery=${encodeURIComponent(searchQuery)}`
     );
-    // axios
-    //   .get(
-    //     `http://127.0.0.1:8000/api/search?lang=${lang}&searchQuery=${searchQuery}`
-    //   )
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error fetching data:", error);
-    //   });
   };
 
   return (

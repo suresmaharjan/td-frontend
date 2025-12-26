@@ -23,8 +23,8 @@ const Header = () => {
           <Link href="/" className="fw-bold">
             Home
           </Link>
-          <Link href="/browse" className="fw-bold">
-            Browse
+          <Link href="/donors" className="fw-bold">
+            Donors
           </Link>
           <Link href="/names" className="fw-bold">
             Names

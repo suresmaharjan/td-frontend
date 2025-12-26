@@ -78,8 +78,7 @@ export default function Search() {
     queryKey: ["search", lang, searchQuery],
     queryFn: async () => {
       const res = await axios.get(
-        // `https://tamangdictionary.com/api/apisearch?lang=${lang}&keyword=${keyword}`
-        `${process.env.NEXT_PUBLIC_HOST}/search?lang=${lang}&searchQuery=${searchQuery}`
+        `${process.env.NEXT_PUBLIC_HOST}/api/search?lang=${lang}&searchQuery=${searchQuery}`
       );
       console.log("Full API response:", res.data.data);
       // adjust based on what you see
